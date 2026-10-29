@@ -75,48 +75,11 @@ Chi tiết sơ đồ phân cấp và chức năng của từng thư mục trong 
 
 ## 🪢 Bộ Kiểm Soát Code Ponytail (Lazy Senior Dev Mode)
 
-Dự án tích hợp bộ kiểm soát code từ [dietrichgebert/ponytail](https://github.com/dietrichgebert/ponytail) nhằm giữ cho codebase luôn tinh gọn, triệt tiêu mã thừa và ngăn ngừa tình trạng over-engineering:
-
-### 1. Triết Lý & Nguyên Tắc Hoạt Động
-- **"The best code is the code you never wrote"**: Đoạn code tốt nhất là đoạn code không cần phải viết.
-- **YAGNI (You Aren't Gonna Need It)**: Từ chối các tính năng mở rộng hay cấu trúc trừu tượng khi chưa có yêu cầu cụ thể.
-- **Diff tối thiểu hoàn chỉnh**: Ưu tiên tận dụng hàm dùng chung tại `src/shared/`, thư viện chuẩn hoặc native API trước khi nghĩ đến việc thêm thư viện hay tạo lớp trung gian.
-- **Minh bạch phạm vi & rủi ro**: Luôn nêu rõ phần nào đã bỏ qua, phần nào chưa kiểm tra và rủi ro nếu có.
-
-### 2. Danh Mục Kỹ Năng Ponytail
-- [`ponytail`](file:///c:/Users/hhaa/Documents/z/.agents/skills/ponytail): Điều chỉnh mức độ kiểm soát (`lite`, `full`, `ultra`, `off`). Cấu hình mặc định là `full`.
-- [`ponytail-review`](file:///c:/Users/hhaa/Documents/z/.agents/skills/ponytail-review): Kiểm tra thay đổi code hiện tại theo tiêu chí chống over-engineering, lỗi tiềm ẩn và tải thực tế.
-- [`ponytail-audit`](file:///c:/Users/hhaa/Documents/z/.agents/skills/ponytail-audit): Kiểm toán chất lượng toàn diện cả repository, phát hiện bloat, mã chết và nợ kỹ thuật.
-- [`ponytail-debt`](file:///c:/Users/hhaa/Documents/z/.agents/skills/ponytail-debt): Thu thập sổ cái nợ kỹ thuật từ các đánh dấu `shortcut: <giới hạn>, <khi nâng cấp>`.
-- [`ponytail-gain`](file:///c:/Users/hhaa/Documents/z/.agents/skills/ponytail-gain): Xem thống kê tiết kiệm dòng code, chi phí và thời gian từ benchmark.
-- [`ponytail-help`](file:///c:/Users/hhaa/Documents/z/.agents/skills/ponytail-help): Bảng tra cứu nhanh lệnh và cấp độ kiểm soát.
-
----
+Dự án tích hợp bộ kiểm soát code từ [dietrichgebert/ponytail](https://github.com/dietrichgebert/ponytail) nhằm giữ cho codebase luôn tinh gọn, triệt tiêu mã thừa và ngăn ngừa tình trạng over-engineering.
 
 ## 🛠️ Bộ Kỹ Năng Quản Lý Dự Án (Matt Pocock Skills Suite)
 
-Hệ thống tích hợp bộ 27 kỹ năng từ repository [mattpocock/skills](https://github.com/mattpocock/skills) vào [.agents/skills/](file:///c:/Users/hhaa/Documents/z/.agents/skills):
-
-```mermaid
-flowchart LR
-    A["grill-with-docs<br/>(Làm rõ & cập nhật Glossary)"] --> B["to-spec<br/>(Viết tài liệu Spec)"]
-    B --> C["to-tickets<br/>(Tạo Task & Blocking edges)"]
-    C --> D["implement<br/>(Triển khai TDD theo từng ticket)"]
-    D --> E["code-review / pr<br/>(Kiểm tra tiêu chuẩn & tạo PR)"]
-    E --> F["retro<br/>(Rút kinh nghiệm & nâng cấp công cụ)"]
-```
-
-- [`ask-matt`](file:///c:/Users/hhaa/Documents/z/.agents/skills/ask-matt): Bộ định tuyến chọn quy trình phù hợp.
-- [`grill-with-docs`](file:///c:/Users/hhaa/Documents/z/.agents/skills/grill-with-docs): Phỏng vấn làm rõ thiết kế kiến trúc, cập nhật [GLOSSARY.md](file:///c:/Users/hhaa/Documents/z/GLOSSARY.md) và ghi nhận [docs/adr/](file:///c:/Users/hhaa/Documents/z/docs/adr).
-- [`to-spec`](file:///c:/Users/hhaa/Documents/z/.agents/skills/to-spec): Đúc kết ngữ cảnh hội thoại thành bản đặc tả kỹ thuật hoàn chỉnh.
-- [`to-tickets`](file:///c:/Users/hhaa/Documents/z/.agents/skills/to-tickets): Chia nhỏ Spec thành các ticket độc lập có ràng buộc chặn (*blocking edges*).
-- [`implement`](file:///c:/Users/hhaa/Documents/z/.agents/skills/implement): Xử lý từng ticket theo phương pháp TDD.
-- [`implement-spec`](file:///c:/Users/hhaa/Documents/z/.agents/skills/implement-spec): Điều phối subagent triển khai toàn bộ Spec dựa trên đồ thị tác vụ (task graph).
-- [`tdd`](file:///c:/Users/hhaa/Documents/z/.agents/skills/tdd): Chu trình Red-Green-Refactor.
-- [`code-review`](file:///c:/Users/hhaa/Documents/z/.agents/skills/code-review): Đánh giá chất lượng code diff trên 2 trục: Chuẩn code & Độ khớp Spec.
-- [`diagnosing-bugs`](file:///c:/Users/hhaa/Documents/z/.agents/skills/diagnosing-bugs): Quy trình chẩn đoán lỗi kỷ luật.
-- [`triage`](file:///c:/Users/hhaa/Documents/z/.agents/skills/triage): Phân loại issue bên ngoài theo 5 vai trò triage tiêu chuẩn.
-- [`retro`](file:///c:/Users/hhaa/Documents/z/.agents/skills/retro): Đánh giá sau chu kỳ triển khai nhằm cải thiện môi trường làm việc của Agent.
+Hệ thống tích hợp bộ 27 kỹ năng từ repository [mattpocock/skills](https://github.com/mattpocock/skills) vào [.agents/skills/](file:///c:/Users/hhaa/Documents/z/.agents/skills).
 
 ---
 
