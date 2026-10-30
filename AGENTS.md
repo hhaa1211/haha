@@ -39,11 +39,9 @@ Tài liệu này quy định các nguyên tắc bắt buộc, tiêu chuẩn ki�
 
 | Agent | Thư mục | Trách nhiệm chính |
 | :--- | :--- | :--- |
-| **01-merchant-scout** | [agents/01-merchant-scout](file:///c:/Users/hhaa/Documents/z/agents/01-merchant-scout) | Quét và đánh giá sản phẩm hot trend, phân tích độ uy tín của Merchant, chính sách hoa hồng, tỷ lệ duyệt mẫu thử. |
-| **02-network-manager** | [agents/02-network-manager](file:///c:/Users/hhaa/Documents/z/agents/02-network-manager) | Quản lý kết nối nền tảng tiếp thị (TikTok Shop Affiliate Network), tạo và giám sát tracking link, quản lý mã giới thiệu. |
-| **03-content-publisher** | [agents/03-content-publisher](file:///c:/Users/hhaa/Documents/z/agents/03-content-publisher) | Soạn kịch bản chuyên sâu với Hook 3s tối ưu, phối hợp sản xuất video, lập lịch và đẩy bài lên kênh TikTok. |
-| **04-consumer-engager** | [agents/04-consumer-engager](file:///c:/Users/hhaa/Documents/z/agents/04-consumer-engager) | Tương tác phản hồi bình luận của người xem, kích hoạt tâm lý mua sắm, dẫn dắt người tiêu dùng nhấn vào giỏ hàng. |
-| **05-analytics-optimizer** | [agents/05-analytics-optimizer](file:///c:/Users/hhaa/Documents/z/agents/05-analytics-optimizer) | Tổng hợp các chỉ số GMV, CTR, CPS, CPA, tính toán ROI và đưa ra khuyến nghị cải tiến cho toàn chuỗi. |
+| **01-market-content-strategist** | [agents/01-market-content-strategist](file:///c:/Users/hhaa/Documents/z/agents/01-market-content-strategist) | Quét xu hướng thị trường TikTok, phân tích sản phẩm hot, xây dựng chiến lược nội dung affiliate và định hướng luồng công việc (quản lý trong `workflows/` và xuất kết quả tại `outputs/`). |
+| **02-video-producer** | [agents/02-video-producer](file:///c:/Users/hhaa/Documents/z/agents/02-video-producer) | Biên soạn kịch bản chi tiết với Hook 3s tối ưu, phối hợp công cụ sản xuất video, tạo visual/audio và chuẩn bị tài nguyên media đăng tải. |
+| **03-finance-tax-tracker** | [agents/03-finance-tax-tracker](file:///c:/Users/hhaa/Documents/z/agents/03-finance-tax-tracker) | Giám sát doanh thu GMV, đối soát hoa hồng CPS/CPC/CPA, quản lý chi phí, tính toán nghĩa vụ thuế và lập báo cáo tài chính tiếp thị liên kết. |
 
 ---
 
@@ -51,18 +49,16 @@ Tài liệu này quy định các nguyên tắc bắt buộc, tiêu chuẩn ki�
 
 ```mermaid
 flowchart LR
-    A["01-merchant-scout<br/>(Tìm sản phẩm & Merchant)"] --> B["02-network-manager<br/>(Lấy link & Chính sách)"]
-    B --> C["03-content-publisher<br/>(Viết Hook 3s & Đăng bài)"]
-    C --> D["04-consumer-engager<br/>(Tương tác & Chăm sóc)"]
-    C & D --> E["05-analytics-optimizer<br/>(Báo cáo GMV, CTR, ROI)"]
-    E -. "Phản hồi tối ưu" .-> A
+    A["01-market-content-strategist<br/>(Nghiên cứu thị trường & Chiến lược nội dung)"] --> B["02-video-producer<br/>(Sản xuất video & Kịch bản Hook 3s)"]
+    B --> C["03-finance-tax-tracker<br/>(Theo dõi GMV, Hoa hồng & Thuế)"]
+    C -. "Phản hồi tối ưu ngân sách & ROI" .-> A
     
     subgraph Storage ["Hạ Tầng Lưu Trữ & Kết Nối"]
         GW["Google Workspace<br/>(Sheets / Docs / Drive)"]
         GB["Build with Google<br/>(Gemini / Firebase)"]
     end
     
-    A & B & C & D & E <--> Storage
+    A & B & C <--> Storage
 ```
 
 ---
@@ -88,6 +84,12 @@ Canonical five-role vocabulary (`needs-triage`, `needs-info`, `ready-for-agent`,
 ### Domain docs
 
 Single-context (`GLOSSARY.md` + `docs/adr/` at root). See [docs/agents/domain.md](file:///c:/Users/hhaa/Documents/z/docs/agents/domain.md).
+
+### Browser automation skills
+
+Bộ kỹ năng điều khiển trình duyệt từ [browser-use/browser-use](https://github.com/browser-use/browser-use) tại [.agents/skills/browser-use/](file:///c:/Users/hhaa/Documents/z/.agents/skills/browser-use):
+- `browser-use`: Điều khiển trình duyệt qua CDP/Accessibility tree, điều hướng ngầm và cào dữ liệu sản phẩm TikTok Shop.
+- `cloud`, `open-source`, `qa`, `remote-browser`, `x402`: Hướng dẫn tích hợp Cloud, Python SDK, kiểm thử QA tự động và kết nối remote.
 
 ---
 

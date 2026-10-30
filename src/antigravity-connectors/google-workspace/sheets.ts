@@ -80,8 +80,60 @@ export async function createAffiliateSheet(title: string): Promise<{ id: string;
   };
 }
 
+/**
+ * Đọc dữ liệu thô từ một vùng ô (range) trên Google Sheets.
+ */
+export async function readRange(
+  spreadsheetId: string,
+  range: string
+): Promise<any[][]> {
+  const result = await runCli("gsheets", ["readonly", "read", spreadsheetId, range], { json: true });
+  if (!result) return [];
+  if (Array.isArray(result) && result.length > 0 && Array.isArray(result[0])) {
+    return result;
+  }
+  return result.values || [];
+}
+
+/**
+ * Nối các dòng dữ liệu (rows) vào cuối một tab trên Google Sheets.
+ */
+export async function appendRows(
+  spreadsheetId: string,
+  sheetName: string,
+  rows: (string | number)[][]
+): Promise<any> {
+  if (!rows || rows.length === 0) return;
+  const serialized = rows.map((r) => r.map(formatCellValue).join(",")).join("|");
+  return runCli("gsheets", ["mutate", "append", spreadsheetId, sheetName, serialized], { json: true });
+}
+
+/**
+ * Ghi dữ liệu vào một vùng ô (range) cụ thể trên Google Sheets.
+ */
+export async function writeRange(
+  spreadsheetId: string,
+  range: string,
+  rows: (string | number)[][]
+): Promise<any> {
+  if (!rows || rows.length === 0) return;
+  const serialized = rows.map((r) => r.map(formatCellValue).join(",")).join("|");
+  return runCli("gsheets", ["mutate", "write", spreadsheetId, range, serialized], { json: true });
+}
+
+function formatCellValue(val: any): string {
+  return String(val ?? "")
+    .replace(/%/g, "%%")
+    .replace(/,/g, "\\,")
+    .replace(/\|/g, "/");
+}
+
 function formatRow(p: ProductAffiliateItem): string {
-  const clean = (val: any) => String(val ?? "").replace(/,/g, "\\,").replace(/\|/g, "/");
+  const clean = (val: any) =>
+    String(val ?? "")
+      .replace(/%/g, "%%")
+      .replace(/,/g, "\\,")
+      .replace(/\|/g, "/");
   return [
     clean(p.id),
     clean(p.name),
